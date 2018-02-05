@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import {ClientOrder } from '../client-order/client-order';
 /**
- * Generated class for the ClientPage page.
+ * Generated class for the EditAlbumPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,18 +10,18 @@ import {ClientOrder } from '../client-order/client-order';
 
 @IonicPage()
 @Component({
-  selector: 'page-client',
-  templateUrl: 'client.html',
+  selector: 'page-edit-album',
+  templateUrl: 'edit-album.html',
 })
-export class Client {
+export class EditAlbum {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Client');
+    console.log('ionViewDidLoad EditAlbum');
   }
-  onSubmitOrder(){
-    this.navCtrl.push(ClientOrder);
+  onComplete(){
+    this.navCtrl.pop();
   }
 }

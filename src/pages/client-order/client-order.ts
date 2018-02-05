@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { HomePage } from '../home/home';
-import { EditAlbum } from '../edit-album/edit-album';
 
 /**
- * Generated class for the PhotographerPage page.
+ * Generated class for the ClientOrderPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,21 +12,18 @@ import { EditAlbum } from '../edit-album/edit-album';
 
 @IonicPage()
 @Component({
-  selector: 'page-photographer',
-  templateUrl: 'photographer.html',
+  selector: 'page-client-order',
+  templateUrl: 'client-order.html',
 })
-export class Photographer {
+export class ClientOrder {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Photographer');
+    console.log('ionViewDidLoad ClientOrder');
   }
-  onSubmitAlbum(){
-      this.navCtrl.push(HomePage);
-    }
-    onEditAlbum(){
-      this.navCtrl.push(EditAlbum);
-    }
+onCompleteOrder(){
+    this.navCtrl.push(HomePage);
+  }
 }

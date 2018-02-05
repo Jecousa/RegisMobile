@@ -1,14 +1,43 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      PhotoPro
     </ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <div padding>
+  <ion-segment [(ngModel)]="user" color="secondary">
+      <ion-segment-button value="photographer">
+        Photographer
+      </ion-segment-button>
+      <ion-segment-button value="client">
+        Client
+      </ion-segment-button>
+    </ion-segment>
+</div>
+
+    <div [ngSwitch]="user">
+      <ion-list *ngSwitchCase ="'photographer'">
+        <ion-item>
+          <ion-input placeholder="Username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="Password" placeholder="Password"></ion-input>
+        </ion-item>
+      <button ion-button (click)="onGoToPhotographer()">Login Photographer</button>
+      </ion-list>
+
+      <ion-list *ngSwitchCase ="'client'">
+        <ion-item>
+          <ion-input placeholder="Access Code"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input type="tel" placeholder="Phone Number"></ion-input>
+        </ion-item>
+        <button ion-button (click)="onGoToClient()">Login Client</button>
+      </ion-list>
+    </div>
 </ion-content>
