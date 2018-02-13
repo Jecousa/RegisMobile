@@ -30,20 +30,9 @@
     <div [ngSwitch]="photographerPage">
       <ion-list *ngSwitchCase ="'newAlbum'">
         <ion-item>
-    <ion-input  placeholder="Upload Photos"></ion-input>
-    </ion-item>
-    <ion-item>
-<ion-input  placeholder="First Name"></ion-input>
-</ion-item>
-<ion-item>
-<ion-input  placeholder="Last Name"></ion-input>
-</ion-item>
-<ion-item>
-<ion-input  placeholder="Phone Number"></ion-input>
-</ion-item>
-    <div padding>
-       <button ion-button color="primary" (click)="onSubmitAlbum()" block>Upload Photos</button>
-     </div>
+          <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+        <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
+      </ion-item>
     </ion-list>
 
       <ion-list *ngSwitchCase ="'editAlbum'">
@@ -55,3 +44,15 @@
       </ion-list>
     </div>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+      <button ion-button icon-left (click)="photoActionSheet()">
+        <ion-icon name="camera"></ion-icon>Select Image
+      </button>
+      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+        <ion-icon name="cloud-upload"></ion-icon>Upload
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
