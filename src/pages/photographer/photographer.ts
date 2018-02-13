@@ -59,13 +59,13 @@ export class Photographer {
             {
               text: 'Select From Library',
               handler: () => {
-                this.takePicture(this.camera.PictureSourceType.PHOTOLIBRARY);
+                this.useCamera(this.camera.PictureSourceType.PHOTOLIBRARY);
               }
             },
             {
               text: 'Camera',
               handler: () => {
-                this.takePicture(this.camera.PictureSourceType.CAMERA);
+                this.useCamera(this.camera.PictureSourceType.CAMERA);
               }
             },
             {
@@ -77,9 +77,16 @@ export class Photographer {
         actionSheet.present();
 
 }
+
+//Actionsheet hidden
+public showUpload: boolean = false;
+
+  public onButtonClick() {
+      this.showUpload = !this.showUpload;
+  }
+
       //Camera
-      public takePicture(sourceType) {
-  // Create options for the Camera Dialog
+      public useCamera(sourceType) {
   var options = {
     quality: 100,
     sourceType: sourceType,
@@ -87,9 +94,9 @@ export class Photographer {
     correctOrientation: true
   };
 
-  // Get the data of an image
+  // Gets image data
   this.camera.getPicture(options).then((imagePath) => {
-    // Special handling for Android library
+    // Android Handling
     if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
       this.filePath.resolveNativePath(imagePath)
         .then(filePath => {
@@ -108,7 +115,6 @@ export class Photographer {
 }
 
 //Storing Photos
-// Create a new name for the image
 private createFileName() {
   var d = new Date(),
   n = d.getTime(),
@@ -116,7 +122,7 @@ private createFileName() {
   return newFileName;
 }
 
-// Copy the image to a local folder
+// Upload to local folder
 private copyFileToLocalDir(namePath, currentName, newFileName) {
   this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
     this.lastImage = newFileName;
@@ -125,6 +131,7 @@ private copyFileToLocalDir(namePath, currentName, newFileName) {
   });
 }
 
+//Display User Messages
 private presentToast(text) {
   let toast = this.toastCtrl.create({
     message: text,
@@ -146,8 +153,7 @@ public pathForImage(img) {
 //File Upload
 public uploadImage() {
   // Destination URL
-  var url = // TODO: update URL "";
-
+  var url =  ""; // TODO: update url
   // File for Upload
   var targetPath = this.pathForImage(this.lastImage);
 

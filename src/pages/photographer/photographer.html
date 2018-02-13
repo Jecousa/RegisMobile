@@ -30,6 +30,7 @@
     <div [ngSwitch]="photographerPage">
       <ion-list *ngSwitchCase ="'newAlbum'">
         <ion-item>
+          <button ion-button (click)="onButtonClick()">Select Photos</button>
           <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
         <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
       </ion-item>
@@ -44,7 +45,7 @@
       </ion-list>
     </div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="showUpload">
   <ion-toolbar color="primary">
     <ion-buttons>
       <button ion-button icon-left (click)="photoActionSheet()">
