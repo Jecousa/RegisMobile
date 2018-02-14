@@ -151,7 +151,7 @@ public pathForImage(img) {
 }
 
 //File Upload
-public uploadImage() {
+public submitAlbum() {
   // Destination URL
   var url =  ""; // TODO: update url
   // File for Upload
