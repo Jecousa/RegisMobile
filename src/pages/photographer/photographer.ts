@@ -5,6 +5,7 @@ import { LoadingProvider } from '../../services/loading';
 import { FirebaseProvider } from '../../services/firebase';
 import 'rxjs/Rx';
 import * as firebase from 'firebase';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'page-photographer',

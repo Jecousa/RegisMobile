@@ -10,6 +10,7 @@ export class FirebaseProvider {
   constructor(public http: HttpClient) { }
 
   renderAlbums(): Observable<any> {
+    
     return new Observable(observer => {
       let albums: any = [];
 
@@ -28,7 +29,7 @@ export class FirebaseProvider {
         observer.complete();
       },
         (error) => {
-          console.log("firebase Album Error");
+          console.log("firebase Album Error: ", error);
           console.dir(error);
           observer.error(error)
         });

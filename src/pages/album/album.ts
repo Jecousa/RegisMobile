@@ -18,9 +18,9 @@ export class Album {
   public form: any;
   public albumImage: any;
   public albums: any;
+  public albumlName: any ='';
   public albumPhoto: any = '';
-  public albumfName: any = '';
-  public albumlName: any = '';
+  public albumfName: any = ''; 
   public albumphone: any = '';
   public albumId: string = '';
   public isEditable: boolean = false;
@@ -45,6 +45,7 @@ export class Album {
     this.albums = firebase.database().ref('albums/');
 
     if (navParams.get('isEdited')) {
+
       let album = navParams.get('album');
 
       this.albumfName = album.fName;
@@ -60,13 +61,12 @@ export class Album {
 
   //Saving Data
   onSubmitAlbum(val) {
-
-    
-
+    this._LOADER.hidePreloader();
     let fName: string = this.form.controls["fName"].value,
       lName: string = this.form.controls["lName"].value,
       phone: number = this.form.controls["phone"].value,
       photo: string = this.albumImage;
+      
     if (this.isEditable) {
 
       if (photo !== this.albumPhoto) {
@@ -82,7 +82,7 @@ export class Album {
               photo: uploadedPhoto
             })
             .then((data) => {
-              
+              this._LOADER.displayPreloader();
             });
           });
       }
@@ -93,7 +93,7 @@ export class Album {
           phone: phone
         })
         .then((data) => {
-          
+          this._LOADER.displayPreloader();
         });
       }
     }
@@ -109,17 +109,17 @@ export class Album {
             photo: uploadedPhoto
           })
             .then((data) => {
-              
+              this._LOADER.displayPreloader();
             });
         });
 
     }
-   /* this.closeModal(true);*/
+    this.closeModal(true);
   }
   
- /*closeModal(val = null) {
+ closeModal(val = null) {
     this.viewCtrl.dismiss(val);
-  }*/
+  }
 
   selectPhoto() {
     this._IMG.selectPhoto()
