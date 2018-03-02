@@ -16,56 +16,12 @@
 <ion-content padding>
   Welcome, {{photographer}}
   <br>
-  <div padding>
-  <ion-segment [(ngModel)]="photographerPage" color="secondary">
-      <ion-segment-button value="newAlbum">
-        New Album
-      </ion-segment-button>
-      <ion-segment-button value="editAlbum">
-        Edit Album
-      </ion-segment-button>
-    </ion-segment>
-</div>
-
-    <div [ngSwitch]="photographerPage">
-      <ion-list *ngSwitchCase ="'newAlbum'">
-        <ion-item>
-          <button ion-button (click)="onButtonClick()">Select Photos</button>
-          <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
-        <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
-      </ion-item>
-      <ion-item>
-   <ion-label fixed>First Name</ion-label>
-   <ion-input type="text" value=""></ion-input>
- </ion-item>
- <ion-item>
-   <ion-label fixed>Last Name</ion-label>
-   <ion-input type="text" value=""></ion-input>
- </ion-item>
- <ion-item>
-   <ion-label fixed>Phone Number</ion-label>
-   <ion-input type="text" value=""></ion-input>
- </ion-item>
-      <button ion-button icon-left (click)="submitAlbum()" [disabled]="lastImage === null">
-        <ion-icon name="cloud-upload"></ion-icon>Upload
+  <ion-buttons end>
+      <button
+         ion-button
+         icon-only
+         (click)="newAlbum()">
+     <ion-icon name="add"></ion-icon>
       </button>
-    </ion-list>
-
-      <ion-list *ngSwitchCase ="'editAlbum'">
-        <ion-list>
-          <ion-item ng-repeat="item in items">
-            <a (click)="onEditAlbum()">First Name, Last Name, Date</a>
-          </ion-item>
-        </ion-list>
-      </ion-list>
-    </div>
+   </ion-buttons>
 </ion-content>
-<ion-footer *ngIf="showUpload">
-  <ion-toolbar color="primary">
-    <ion-buttons>
-      <button ion-button icon-left (click)="photoActionSheet()">
-        <ion-icon name="camera"></ion-icon>Select Image
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

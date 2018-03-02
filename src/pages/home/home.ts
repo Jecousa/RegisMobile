@@ -10,9 +10,9 @@ import { Photographer} from '../photographer/photographer';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController) {}
 
-  }
+
 
   onGoToClient(){
     this.navCtrl.push(Client);

@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { HttpClientModule } from '@angular/common/http';
 
 //Pages
 import { MyApp } from './app.component';
@@ -17,6 +18,11 @@ import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
+import { albumService } from '../services/albums';
+import { PhotosProvider } from '../services/photos';
+import { FirebaseProvider } from '../services/firebase';
+import { LoadingProvider } from '../services/loading';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +34,7 @@ import { Camera } from '@ionic-native/camera';
      EditAlbum
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     IonicModule.forRoot(MyApp)
   ],
@@ -41,13 +48,17 @@ import { Camera } from '@ionic-native/camera';
      EditAlbum
   ],
   providers: [
+    albumService,
     StatusBar,
     SplashScreen,
     File,
     Transfer,
     Camera,
     FilePath,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PhotosProvider,
+    FirebaseProvider,
+    LoadingProvider
   ]
 })
 export class AppModule {}
