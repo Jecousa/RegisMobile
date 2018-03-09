@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -9,7 +9,7 @@ export class PhotoProvider {
 
    public cameraImage : String
 
-   constructor(public http     : Http,
+   constructor(public http     : HttpClient,
                private _CAMERA : Camera)
    {
    }
